@@ -1,33 +1,47 @@
 <!doctype html>
 <html lang="pt-BR">
-<header style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-  <div style="display:flex;align-items:center;gap:12px;">
-    <img src="logo.png" alt="Logo" style="width:54px;height:54px;border-radius:14px;object-fit:cover;border:1px solid #eee;">
-    <div>
-      <h1 style="margin:0;font-size:24px;">Cardápio - Dona Brownie</h1>
-      <div style="opacity:.7;margin-top:4px;">Escolha os itens e finalize na DM do Instagram</div>
-    </div>
-  </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cardápio - Dona Brownie</title>
+</head>
 
-  <a id="igLink" href="#" target="_blank" rel="noreferrer"
-     style="text-decoration:none;border:1px solid #ddd;padding:10px 12px;border-radius:12px;background:#fff;">
-    Instagram
-  </a>
-</header>
+<body style="margin:0;background:#fff5f7;">
+  <div style="max-width:980px;margin:0 auto;padding:18px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
 
+    <!-- HEADER (Logo + Título + Link Instagram) -->
+    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="logo.png" alt="Logo"
+             style="width:60px;height:60px;border-radius:16px;object-fit:cover;border:2px solid #7c2d12;background:#fff;">
+        <div>
+          <h1 style="margin:0;font-size:24px;color:#7c2d12;">Cardápio - Dona Brownie</h1>
+          <div style="opacity:.75;margin-top:4px;">Escolha os itens e finalize na DM do Instagram</div>
+        </div>
+      </div>
+
+      <a id="igLink" href="#" target="_blank" rel="noreferrer"
+         style="text-decoration:none;border:1px solid #7c2d12;padding:10px 14px;border-radius:12px;background:#7c2d12;color:white;font-weight:800;">
+        Instagram
+      </a>
+    </header>
+
+    <!-- CONTEÚDO -->
     <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:18px;">
+      <!-- PRODUTOS -->
       <section>
         <h2 style="margin:0 0 10px;">Produtos</h2>
         <div id="produtos" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;"></div>
       </section>
 
-      <aside style="border:1px solid #eee;border-radius:14px;padding:14px;height:fit-content;">
+      <!-- CARRINHO -->
+      <aside style="border:1px solid #eee;border-radius:14px;padding:14px;height:fit-content;background:#fff;">
         <h2 style="margin:0 0 10px;">Carrinho</h2>
         <div id="carrinho" style="display:flex;flex-direction:column;gap:8px;"></div>
 
         <hr style="margin:12px 0;border:none;border-top:1px solid #eee;">
 
-        <div style="display:flex;justify-content:space-between;font-weight:800;">
+        <div style="display:flex;justify-content:space-between;font-weight:900;">
           <span>Total</span>
           <span id="total">R$ 0,00</span>
         </div>
@@ -56,7 +70,7 @@
         </label>
 
         <button id="finalizar"
-          style="width:100%;margin-top:12px;padding:12px;border-radius:14px;border:1px solid #111;background:#111;color:#fff;font-weight:800;cursor:pointer;">
+          style="width:100%;margin-top:12px;padding:12px;border-radius:14px;border:1px solid #7c2d12;background:#7c2d12;color:#fff;font-weight:900;cursor:pointer;">
           Finalizar pedido no Instagram
         </button>
 
@@ -75,16 +89,14 @@
   // ========= CONFIGURE AQUI =========
   const INSTAGRAM_USER = "donabrownie__"; // sem @
 
-  // Edite seus produtos:
-const produtos = [
-  { id: "b1", nome: "Brownie Tradicional", preco: 12.90, desc: "Massa chocolatuda e macia.", img: "brownie1.jpg" },
-  { id: "b2", nome: "Brownie Brigadeiro", preco: 14.90, desc: "Cobertura cremosa de Brigadeiro.", img: "brownie2.jpg" },
-  { id: "b3", nome: "Brownie Leite ninho", preco: 16.90, desc: "Recheio de Leite ninho.", img: "brownie3.jpg" },
-];
+  const produtos = [
+    { id: "b1", nome: "Brownie Tradicional", preco: 12.90, desc: "Massa chocolatuda e macia.", img: "brownie1.jpg" },
+    { id: "b2", nome: "Brownie Brigadeiro", preco: 14.90, desc: "Cobertura cremosa de Brigadeiro.", img: "brownie2.jpg" },
+    { id: "b3", nome: "Brownie Leite ninho", preco: 16.90, desc: "Recheio de Leite ninho.", img: "brownie3.jpg" },
+  ];
   // ==================================
 
   const cart = {}; // {id: {p, qty}}
-
   const brl = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   document.getElementById("igLink").href = `https://www.instagram.com/${INSTAGRAM_USER}/`;
@@ -100,31 +112,34 @@ const produtos = [
       card.style.border = "1px solid #eee";
       card.style.borderRadius = "14px";
       card.style.padding = "12px";
+      card.style.background = "#fff";
+
       card.innerHTML = `
-        card.innerHTML = `
-  <div style="width:100%;aspect-ratio:1/1;border-radius:14px;background:#f3f4f6;overflow:hidden;border:1px solid #eee;">
-    ${p.img ? `<img src="${p.img}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;">` : ""}
-  </div>
+        <div style="width:100%;aspect-ratio:1/1;border-radius:14px;background:#f3f4f6;overflow:hidden;border:1px solid #eee;">
+          ${p.img ? `<img src="${p.img}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;">` : ""}
+        </div>
 
-  <div style="font-weight:900;margin-top:10px;">${p.nome}</div>
-  <div style="opacity:.72;margin-top:4px;">${p.desc || ""}</div>
-  <div style="margin-top:8px;font-weight:800;">${brl(p.preco)}</div>
+        <div style="font-weight:900;margin-top:10px;">${p.nome}</div>
+        <div style="opacity:.72;margin-top:4px;">${p.desc || ""}</div>
+        <div style="margin-top:8px;font-weight:900;color:#7c2d12;">${brl(p.preco)}</div>
 
-  <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
-    <button data-id="${p.id}" data-act="menos"
-      style="width:38px;height:38px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer;">–</button>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
+          <button data-id="${p.id}" data-act="menos"
+            style="width:38px;height:38px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer;">–</button>
 
-    <div id="q-${p.id}" style="min-width:26px;text-align:center;font-weight:800;">${qty}</div>
+          <div id="q-${p.id}" style="min-width:26px;text-align:center;font-weight:900;">${qty}</div>
 
-    <button data-id="${p.id}" data-act="mais"
-      style="width:38px;height:38px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer;">+</button>
+          <button data-id="${p.id}" data-act="mais"
+            style="width:38px;height:38px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer;">+</button>
 
-    <button data-id="${p.id}" data-act="add"
-      style="margin-left:auto;padding:10px 10px;border-radius:12px;border:1px solid #7c2d12;background:#7c2d12;color:#fff;font-weight:800;cursor:pointer;">
-      Adicionar
-    </button>
-  </div>
-`;
+          <button data-id="${p.id}" data-act="add"
+            style="margin-left:auto;padding:10px 10px;border-radius:12px;border:1px solid #7c2d12;background:#7c2d12;color:#fff;font-weight:900;cursor:pointer;">
+            Adicionar
+          </button>
+        </div>
+      `;
+      el.appendChild(card);
+    });
 
     el.querySelectorAll("button").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -177,8 +192,8 @@ const produtos = [
       row.style.justifyContent = "space-between";
       row.style.gap = "10px";
       row.innerHTML = `
-        <div style="font-weight:700;">${it.qty}x ${it.p.nome}</div>
-        <div style="font-weight:800;">${brl(it.p.preco * it.qty)}</div>
+        <div style="font-weight:800;">${it.qty}x ${it.p.nome}</div>
+        <div style="font-weight:900;">${brl(it.p.preco * it.qty)}</div>
       `;
       el.appendChild(row);
     });
